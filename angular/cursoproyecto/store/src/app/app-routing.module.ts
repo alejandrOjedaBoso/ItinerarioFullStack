@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AlejandroComponent } from './pages/alejandro.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
   { path: 'alejandro', component: AlejandroComponent },
   { path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule) },
   { path: 'checkout', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule) },
