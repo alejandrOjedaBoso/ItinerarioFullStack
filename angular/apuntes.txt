@@ -1,0 +1,6 @@
+ng new --no-standalone <nombreApp>
+ng generate component shared/components/header Añademos un nuevo componente al proyecto
+npm i -g json-server Para crear una API
+ng add @angular/material
+ng g m pages/products -m=app --route products
+ng g service /pages/products/services/product --skip-tests  Crear un servicio

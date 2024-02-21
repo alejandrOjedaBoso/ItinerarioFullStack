@@ -1,0 +1,16 @@
+npm i -g typescript	Instalar typescript
+tsc -v	Comprobar la version typescript
+*. ts	Extension de typescript
+tsc *.ts	para compilar codigo
+node index.js	Ejecutar codigo
+tsc --outDir directorio index.ts --watch	Pone el archivo en una carpeta y se actualiza los cambios automaticamente (watch)
+tsc --init
+
+
+Decoradores
+-----------------------------------------
+function imprimirConsola(constructorClase: Function){
+	console.log(constructorClase);
+}
+
+@impimirConsola

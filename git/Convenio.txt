@@ -1,0 +1,27 @@
+fix: Incluye resoluciones de errores de ejecución de código o de visualización de HTML y CSS. Por tanto, todos los commits serán de tipo fix. 
+
+style: Incluye cambios de estilo de código de acuerdo a las normas de estilo definidas para el proyecto. Por tanto, todos los commits serán de tipo style. 
+
+refactor: Incluye cambios que ni añaden funcionalidades ni resuelven bugs, pero mejoran la calidad del código (eliminar repeticiones, código más conciso, aplicación de principios SOLID…). Por tanto, todos los commits serán de tipo refactor. 
+
+test: Añaden tests a las funcionalidades del proyecto. Por tanto, todos los commits serán de tipo test. 
+
+docs: Incluye cambios a la documentación general del proyecto. Por tanto, todos los commits serán de tipo docs. Esta rama no tiene por qué considerarse una ayuda para los commits atrasados de tareas pendientes. Si se documenta una parte concreta y específica de una funcionalidad, ésta podría enviarse con un commit en la rama concreta de esa funcionalidad (p ej, docs(api-docs): Add module API methods definitions). Pero para documentación general de todo el proyecto (README.md, LICENSE.md, documentación de API…) la rama docs sería la encargada de recibir todos esos commits. 
+
+
+
+Se usa el presente de imperativo en inglés:  "change", no "changed" ni "changes"; "add", no "added" ni "adds", etc. 
+
+
+
+Las tres ramas principales (master, develop, scaffolding) serán habitualmente competencia del director del proyecto, por lo que, salvo indicación expresa, un desarrollador a cargo de una funcionalidad no ha de hacer checkout a estas ramas para introducir cambios necesarios para su funcionalidad. 
+
+Las ramas feat/… para funcionalidades concretas serán el ámbito de trabajo exclusivo para un desarrollador al que se le ha encomendado trabajar una funcionalidad, y deberán incluir todos sus commits (feat, fix, style, refactor, chore, test, docs) en esta rama. 
+
+Siempre, cada vez que un nuevo commit se añada a develop tras un MR en Gitlab, todas las ramas activas (aquellas sin mergear y con commits por delante de develop) ejecutarán un git pull origin develop –no-ff para traerse a su rama los cambios de develop y resolver potenciales conflictos. 
+
+Las ramas de desarrollo general son igualmente encargos específicos de tareas concretas, sólo que de alcance general para el proyecto. Si un desarrollador recibe la tarea de resolver varios bugs en un solo MR, se le indicará que use la rama fix para realizar todos los arreglos, e igualmente no deberá hacer checkout a otras ramas para este cometido. 
+
+Lo mismo que para fix se aplica para ramas como style, refactor o test. Estas ramas probablemente sean usadas por el director del proyecto para hacer una revisión y mejora del estilo y calidad del código de todo el proyecto sin tener que saltar a cada rama de funcionalidad. Si decide delegar esta tarea en otro desarrollador del equipo, éste igualmente hará este trabajo global en la rama general correspondiente. 
+
+La rama docs incluirá todos los cambios en la documentación del proyecto. Probablemente esta rama se pueda considerar como una rama principal, como master, develop y scaffolding, y no como una rama auxiliar para commits atrasados de un mismo tipo, pero no se ve necesaria su creación al inicio del proyecto como las otras tres. Sólo cuando se decida incluir una documentación del proyecto, o al menos empezar a redactar un archivo README.md detallado, se crearía la rama docs a partir de develop. 

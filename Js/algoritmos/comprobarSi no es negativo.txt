@@ -1,0 +1,16 @@
+function bouncer(arr) {
+  let resultado=[];
+
+  for(let i=0; i<arr.length;i++){
+    const com=arr[i];
+    if(comprobacion(com)){
+      resultado.push(com);
+    }
+  }
+  console.log(resultado);
+  return resultado;
+}
+
+function comprobacion(com){
+  return (com !==false && com !==null && ((isNaN(com) && typeof ""===typeof com )||!isNaN(com))&& com !==0 && com !==undefined && com !=="");
+}

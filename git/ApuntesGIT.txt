@@ -1,0 +1,49 @@
+Git
+----------
+git status
+git add
+git rm Quitar del staging area
+git init Para iniciar un nuevo repositorio
+git log Historial de commits realizados
+git diff Compari contenido de working copy con el del staging area
+git diff --staged staging area vs repo
+git reset HEAD~1/commit/tag Deshacer el último commit pero mantener el working copy
+git reset --hard HEAD~1/commit/tag Si que elimina el working copy
+git tag <tag> Tageo el commit actual
+git show <tag> Toda la informacion del commit
+git tag -d Borra tag
+git reflog Nos muestra todo lo que ha pasado en nuestro repositorio
+git branch <nombre> Crear una rama
+git checkout <nombreRama>/<commit> Nos cambiamos de rama
+git checkout -b <nombreNuevaRama> Nos crea y nos cambia de rama
+git branch -m <nombreActual> <nuevoNombre> Cambia el nombre de la rama
+git branch -D <nombreRama> Borrar rama
+git merge <nombreRama> La rama actual absorbe otra rama
+git log --graph Pinta el log en forma de arbol
+git log --decorate Muestra la rama
+git log --pretty=oneline Simplificado en una linea
+git --global config alias.graph "log --graph --decorate --pretty=oneline" Generemos un alias
+git merge --abort Para abortar el mege
+git stash Este comando es god, guarda los cambios en un portapapeles
+git stash pop Aplica los cambios de git stash
+git clone Descarga un repositorio remoto
+git remote Aparecen los escritorios remotos dados de alta
+git remote add Agrega un repositorio remoto <nombreRepo> <urlRemota>
+git push Envia los cambios a el repositorio remoto
+git push origin master Comprueba que la rama este actualizada
+git fetch Trae la rama del repo remoto al repo local
+git pull Trae los cambios del repo remoto al repo local, creando un nuevo commit
+git push origin --delete <nombreRamaRemota> Se carga la rama remota
+git rebase <nombreRama> (Peligrosa, no me gusta) Corta la rama en la que estamos y la pega donde se lo decimos
+
+
+GitIgnore
+----------
+*.class No incluye los archivos que terminen con la extensión .class
+bin/ Ignora los archivos de la carpeta bin
+
+
+Linux
+-----------
+diff Encontrar diferencias entre archivos
+patch Te aplica las diferencias entre archivos

@@ -1,0 +1,9 @@
+function chunkArrayInGroups(arr, size) {
+  let reparto = [];
+
+  while(arr.length!==0){
+    reparto.push(arr.splice(0,size));
+  }
+
+  return reparto;
+}

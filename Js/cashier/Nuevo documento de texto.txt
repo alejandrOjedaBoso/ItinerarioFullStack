@@ -1,0 +1,67 @@
+function checkCashRegister(price, cash, cid) {
+  const tranformar={
+    "PENNY":0.01,
+    "NICKEL":0.05,
+    "DIME":0.1,
+    "QUARTER":0.25,
+    "ONE":1,
+    "FIVE":5,
+    "TEN":10,
+    "TWENTY":60,
+    "ONE HUNDRED":100
+  }
+  let respuesta = {
+    status:"OPEN",
+    change:[]
+  }
+  let isClosed=true;
+  let cambio=cash-price;
+  let cont=0;
+  cid=cid.reverse();
+  
+
+  while(cont<cid.length){
+    let current=cid[cont][1], moneda=cid[cont][0];
+    if(cambio>current){
+      
+      cambio=cambio-current;
+      respuesta.change.push([moneda,current]);
+      if(current!==0){
+        isClosed=false;
+      }
+      
+    }else if(cambio===current){
+      
+      cambio=cambio-current;
+      respuesta.change.push([moneda,current]);
+
+    }else if(cambio<current && cambio/tranformar[moneda]>=1){
+      
+      let aux=Math.trunc(cambio/tranformar[moneda])*tranformar[moneda];
+      
+      cambio-=aux;
+      cambio=Math.round(cambio*100)/100;
+      respuesta.change.push([moneda,aux]);
+
+      isClosed=false;
+    }   
+    if(cambio===0){
+      break;
+    }
+
+    cont++;
+  }
+
+  if(cambio>0){
+    respuesta.status="INSUFFICIENT_FUNDS";
+    respuesta.change=[];
+  }else if(isClosed===true){
+    respuesta.status="CLOSED";
+    respuesta.change=cid.reverse();
+  }
+  
+  console.log(respuesta);
+  return respuesta;
+}
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
