@@ -4,3 +4,4 @@ npm i -g json-server Para crear una API
 ng add @angular/material
 ng g m pages/products -m=app --route products
 ng g service /pages/products/services/product --skip-tests  Crear un servicio
+ng g m pages/checkout/thank-you-page --module checkout --route thank-you-page

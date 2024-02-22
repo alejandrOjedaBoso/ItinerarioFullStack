@@ -30,17 +30,31 @@ export class ShoppingCartService{
     }
 
     private calcTotal():void{
-        const total= this.products.reduce((total,product)=> total+product.price,0);
+        const total= this.products.reduce((total,product)=> total+product.price*product.qty,0);
         this.totalSubject.next(total); 
     }
 
     private quantityProducts():void{
-        const quantity = this.products.length;
+        const quantity = this.products.reduce((quantity,product)=> quantity+product.qty,0);
         this.quantitySubject.next(quantity);
     }
 
     private addToCart(product:Product):void{
-        this.products.push(product);
+        const isProductInCart=this.products.find(id=> id.id===product.id);
+
+        if(isProductInCart){
+            isProductInCart.qty++;
+        }else{
+            this.products.push({...product,qty:1});
+        }
+
         this.cartSubject.next(this.products);
+    }
+
+    resetShoppingCart():void{
+        this.cartSubject.next([]);
+        this.totalSubject.next(0);
+        this.quantitySubject.next(0);
+        this.products=[];
     }
 }
