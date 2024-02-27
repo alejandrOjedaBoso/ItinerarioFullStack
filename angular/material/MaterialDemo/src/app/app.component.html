@@ -171,7 +171,7 @@
     <a mat-list-item href="#">About</a>
     <a mat-list-item href="#">Services</a>
 </mat-nav-list>
--->
+
 
 <mat-list class="colorBlack">
     <mat-list-item>
@@ -179,4 +179,229 @@
         <h3 matLine>Heading</h3>
         <p matLine>Line</p>
     </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+        <mat-icon matListIcon>folder</mat-icon>
+        <h3 matLine>Heading 2</h3>
+        <p matLine>Line 2</p>
+    </mat-list-item>
 </mat-list>
+
+
+<mat-grid-list cols="2" rowHeight="200px" gutterSize="10px">
+    <mat-grid-tile>Title 1</mat-grid-tile>
+    <mat-grid-tile>Title 2</mat-grid-tile>
+    <mat-grid-tile>Title 3</mat-grid-tile>
+    <mat-grid-tile>Title 4</mat-grid-tile>
+</mat-grid-list>
+
+
+
+<mat-accordion multi="true" hideToggle>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Angular Fundamentals
+            </mat-panel-title>
+            <mat-panel-description>
+                Total Duration : 5 hours
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>This is the panel content. Add course details.</p>
+        <mat-action-row>
+            <button mat-button>Enroll</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Angular Material
+            </mat-panel-title>
+            <mat-panel-description>
+                Total Duration : 2 hours
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>This is the panel content. Add course details.</p>
+        <mat-action-row>
+            <button mat-button>Enroll</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+
+</mat-accordion>
+
+
+<mat-card>
+    <mat-card-title>
+        Card Title
+    </mat-card-title>
+    <mat-card-content>
+        This is the card content
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-flat-button>Login</button>
+    </mat-card-actions>
+</mat-card>
+
+
+
+<mat-tab-group #tabRef  (selectedTabChange)="logChange(tabRef.selectedIndex)">
+    <mat-tab label="Angular">Angular content</mat-tab>
+    <mat-tab label="React">React content</mat-tab>
+    <mat-tab label="Vue content">Vue content</mat-tab>
+</mat-tab-group>
+{{tabRef.selectedIndex}}
+
+
+<mat-horizontal-stepper linear>
+    <mat-step label="Shipping Addres" completed="true">
+        <p>Shipping Address Details</p> 
+    </mat-step>
+    <mat-step label="Billing Addres" completed="false" optional>
+        <p>Billing Address Details</p>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+    </mat-step>
+    <mat-step label="Place Order" completed="false">
+        <p>Order Details</p>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<mat-form-field floatLabel="auto" hideRequiredMarker appearance="fill" color="accent">
+    <mat-label>Name</mat-label>
+    <input matInput required>
+    <mat-hint align="end">Min 5 characters</mat-hint>
+</mat-form-field>
+
+<mat-form-field floatLabel="auto" hideRequiredMarker appearance="outline" color="warn">
+    <mat-label>Name</mat-label>
+    <input matInput required>
+    <mat-hint align="end">Min 5 characters</mat-hint>
+</mat-form-field>
+
+
+
+<mat-form-field>
+    <mat-label>Topic</mat-label>
+    <mat-select [(value)]="selectedValue" multiple="">
+        <mat-option>None</mat-option>
+        <mat-optgroup label="web">
+            <mat-option value="angular">Angular</mat-option>
+            <mat-option value="react">React</mat-option>
+            <mat-option value="vue">Vue</mat-option>
+        </mat-optgroup>
+        <mat-optgroup label="Mobile">
+            <mat-option value="ionic">Ionic</mat-option>
+            <mat-option value="reactnative">React Native</mat-option>
+        </mat-optgroup>
+    </mat-select>
+</mat-form-field>
+{{selectedValue}}
+
+
+<form>
+    <mat-form-field>
+        <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl">
+        <mat-autocomplete #auto [displayWith]="displayFunction">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</form>
+
+
+
+<div class="colorBlack">
+    <mat-checkbox>
+        Subscribe
+    </mat-checkbox>
+    <br>
+    <mat-checkbox labelPosition="before">
+        Subscribe
+    </mat-checkbox>
+    <br>
+    <mat-checkbox color="primary">
+        Subscribe
+    </mat-checkbox>
+    <br>
+    <mat-checkbox color="warn">
+        Subscribe
+    </mat-checkbox>
+</div>
+
+
+<div class="colorBlack">
+    <mat-radio-group>
+        <mat-radio-button value="angular" color="primary">Angular</mat-radio-button>
+        <mat-radio-button value="React" color="accent">React</mat-radio-button>
+        <mat-radio-button value="Vue" color="warn">Vue</mat-radio-button>
+    </mat-radio-group>
+</div>
+
+
+<mat-form-field>
+    <input matInput [matDatepicker]="myDatePicker" [min]="minDate" [max]="maxDate" [matDatepickerFilter]="dateFilter" disabled>
+    <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker disabled="false" touchUi="true" startView="multi-year" #myDatePicker></mat-datepicker>
+</mat-form-field>
+
+
+
+<button 
+mat-raised-button matTooltip="Welcome to chofoneitor tres mil" 
+matTooltipPosition="after"
+matTooltipShowDelay="2000"
+matTooltipHideDelay="2000">
+    Hello
+</button>
+
+
+<button mat-button (click)="openSnackBar('Item Deleted', 'Undo')">
+    Show snack-bar
+</button>
+
+<button mat-button (click)="openDialog()">Open Dialog</button>
+
+
+
+
+<mat-form-field>
+    <input matInput placeholder="Filter" (keyup)="applyFilter($event.target)">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons></mat-paginator>
+
+-->
+
+<cdk-virtual-scroll-viewport itemSize="100" class="container">
+    <div *cdkVirtualFor="let number of numbers" class="number">
+        {{number}}
+    </div>
+</cdk-virtual-scroll-viewport>
