@@ -1,1 +1,9 @@
 https://www.youtube.com/watch?v=5NgNicANyqM
+https://www.youtube.com/watch?v=OJ7xtpKWKT8&list=PLlVkYWGRhwk_U8IO-v4GOvKtxMABBH58l&index=2
+
+oauth2----Json web token
+
+
+El componente del modulo es el que tiene que recibir los datos de los servicios y los subcomponentes los obtienen a traves de inputs.
+
+Se comportaten los modulos a traves de un modulo general llamado shared.

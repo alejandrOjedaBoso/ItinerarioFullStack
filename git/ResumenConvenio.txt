@@ -1,0 +1,14 @@
+Tipo: Obligatioro.
+Feat: Añade código que forma parte de una funcionalidad
+Fix: Resuelve un fallo en la ejecución del código o en la visualización de la aplicación(HTML, CSS)
+Style: Cambios que no afectan a la ejecución del código, sólo a su estilo (indentación, puntos y comas, espacios en blanco...) Formatean el código que no sigue las reglas de estilo predefinidas.
+Refactor: Cambios que ni añaden funcionalidades ni resuelven bugs, son refactorizaciones que mejoran la calidad del código (Eliminar repeticiones, código más conciso, aplicación de principios SOLID...).
+Chore: Tareas rutinarias de creación y mantenimiento del proyecto: cambios en el proceso de compilado, en las herramientas auxiliares (eslint, gitlab-ci.yaml, DockerFile, prettier, angular.json) o en dependencias(instalar, actualizar o eliminar paquetes).
+Test: Añade tests al código de la funcionalidad.
+Docs: Creación o modificación de documentación (Read.me, LICENSE.md, archivos de la carpeta /docs o swagger...).
+
+-------------------------
+Alcance: Opcional, se pone que archivos, carpetas o componentes que se han tocado.
+
+-------------------------
+Asusnto: Obligatorio, descipcion del cambio se escribe en ingles imperativo.
