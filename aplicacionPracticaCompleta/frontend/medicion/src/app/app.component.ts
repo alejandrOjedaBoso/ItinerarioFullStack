@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LoginService} from '../services/login.service.js';
+import {LoginService} from './services/login.service.js';
 
 
 @Component({
@@ -18,14 +18,14 @@ export class AppComponent {
   login():void {
     if(this.user && this.password){
       const response = this.loginService.login(this.user, this.password).subscribe(
-        response=>{
-          console.log(response);
+        (response)=>{
+          const token = response.token;
+          localStorage.setItem('token', token);
         },
         error =>{
           console.error(error);
         }
       );
-      console.log(response);
     }
   }
 }
