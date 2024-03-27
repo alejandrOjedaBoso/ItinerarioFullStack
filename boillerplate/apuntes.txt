@@ -1,0 +1,13 @@
+npm ci 		#Para instalar las depencias, despues de limpiarlas 
+rs	#Recarga nodemon
+
+
+
+
+BoillerPlate
+----------------------------------
+npm run create-resource.cmd {recurso}	#Crea unos nuevos archivos de controllador, servicios, repositorios y modelos para el recurso.
+
+create-resource.cmd fooball-players -i ref	#Hace que la clave primaria en vez ser id sea ref
+
+create-resource.cm cities -s city	#Indicas el singular del recurso 

@@ -1,1 +1,201 @@
 npm i express morgan sequelize pg pg-hstore
+
+
+Models realations
+---------------------------------------------
+Se asignan por parejas para que ambos modelos tengan los metodos que proporcionan sequelize
+
+-HasOne: Existe relacion one to one, donde la clave foranea se define en el modelo B
+	A.hasOne(B); // A HasOne B
+
+-BelongsTo: Existe relacion  one to one, donde la clave de B se convierte en clave foranea en el modelo fuente (A)
+	A.belongsTo(B); // A BelongsTo B
+
+-HasMany: Existe relacion  one to many, la clave foranea es definida en B
+	A.hasMany(B); // A HasMany B
+
+-BelongsToMany: Existe relacion many to many, junta A y B en una tercera tabla C, con las clabes foraneas 
+	A.belongsToMany(B, { through: 'C' }); // A BelongsToMany B through the junction table C
+	//Tambien se le puede pasar en vez de un string "C", se le puede pasar un Modelo.
+
+
+Models Relations how to use
+----------------------------------------------
+One to one: Se utilizan hasOne y belongsTo a la vez.
+One to many: Se utilizan hasMany y belongsTo a la vez.
+Many to many: Se utilizan belongsToMany dos veces.
+
+
+Models relations Cascade
+------------------------------------------------
+Options: RESTRICT, CASCADE, SET DEFAULT, SET NULL
+
+One to one: 
+	Foo.hasOne(Bar, {
+  		onDelete: 'RESTRICT',
+  		onUpdate: 'RESTRICT'
+	});
+	Bar.belongsTo(Foo);
+
+
+Models relations many to many
+-----------------------------------------------
+const ActorMovies = sequelize.define('ActorMovies', {
+  MovieId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Movie, // 'Movies' would also work
+      key: 'id'
+    }
+  },
+  ActorId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Actor, // 'Actors' would also work
+      key: 'id'
+    }
+  }
+});
+Movie.belongsToMany(Actor, { through: ActorMovies });
+Actor.belongsToMany(Movie, { through: ActorMovies });
+
+
+Models relations eager vs lazy loading
+-----------------------------------------------
+Por defecto es Lazy
+Eager:
+const awesomeCaptain = await Captain.findOne({
+  where: {
+    name: "Jack Sparrow"
+  },
+  include: Ship
+});
+
+
+Models realtions methods
+----------------------------------------------
+Cuando se hace la asociacion de dos modelos las instancias
+de esto obtienen los sigientes metodos:
+
+#Foo.hasOne(Bar)
+fooInstance.getBar()
+fooInstance.setBar()
+fooInstance.createBar()
+
+#Foo.belongsTo(Bar)
+fooInstance.getBar()
+fooInstance.setBar()
+fooInstance.createBar()
+
+#Foo.hasMany(Bar)
+fooInstance.getBars()
+fooInstance.countBars()
+fooInstance.hasBar()
+fooInstance.hasBars()
+fooInstance.setBars()
+fooInstance.addBar()
+fooInstance.addBars()
+fooInstance.removeBar()
+fooInstance.removeBars()
+fooInstance.createBar()
+
+#Foo.belongsToMany(Bar, { through: Baz })
+//the same ones from Foo.hasMany(Bar)
+
+
+Models relations operators
+------------------------------------
+example:  
+const easyTasks = await project.getTasks({
+  where: {
+    difficulty: {
+      [Op.lte]: 5
+    }
+  }
+});
+
+
+Models relations with multiple associations
+--------------------------------------------
+Team.hasOne(Game,{ as:"HomeTeam", foreignKey:"homeTeamId"});
+Team.hasOne(Game,{ as:"AwayTeam", foreignKey:"awayTeamId"});
+//Se le asigna con un alias y le cambias el nombre de la clave foranea
+
+//Si tenemos que hacer referencia a uno de los dos en la relacion con belongTo haremos targetKey
+Ship.belongsTo(Captain, { targetKey: 'name', foreignKey: 'captainName' });
+
+//En el caso que necesitemos hacer referencia desde un hasOne o hasMany lo haremos con source sourceKey
+Foo.hasOne(Bar, { sourceKey: 'name', foreignKey: 'fooName' });
+
+
+Models relations multiple loading
+-------------------------------------------
+Example:
+Foo.findAll({
+	include:[
+	  {
+		model: Bar,
+		required;true
+	  },
+	  {	
+		model:Baz,
+		where:/*...*/
+	  },
+	  Qux // Shorthand syntax for {model: Qux} also works here
+	]
+}
+
+
+Models sync
+--------------------------------------------
+await sequelize.sync();
+
+
+Models relations include everything
+--------------------------------------------
+Example:
+User.find({include:{all: true}})
+
+User.find({include:{all: true, nested:ture}})
+
+
+Models relations order
+--------------------------------------------
+Expample:
+Company.findAll({
+	include: Division,
+	order:[
+		[Division, 'name', 'ASC']
+	]
+});
+
+
+Models relations fidn and count
+--------------------------------------------
+Example:
+User.findAndCountAll({
+	include:[
+		{model:Profile,required:true}
+	],
+	limit: 3
+});
+
+
+Models relations one to many polymorphic association configutation
+--------------------------------------------
+-En el modelo poner un campo que se llame commentableType
+-Definir con normalidad las relaciones entre los modelos. Quitando las constraints
+-Definir un nuevo metodo en el modelo llamado get{modelo} que traiga el comentable deseado
+-Define afterFind hook en el modelo d ecomentario que automaticamente llenará el campo comentable en cada instancia
+-Para prevenir bugs o errores en eager loading, puedes también borrar los campos concretos imagen y video de las instancias en el mismo afterFind hook, dejando el commentable abstracto disponible
+
+
+
+Models relations many to many polymorphic association configutation (tags and taggable)
+--------------------------------------------
+-Estable el modelo de union, especificando las dos claves foraneas como tagId y taggableId
+-Establece el campo llamado taggableType en el modelo de union
+-Establece belongsToMany associations between the two models and tag
+	Quitando las constraints 
+	Especificando apropiadamente el alcance de las asociaciones
+-Establece una nuevo metodo en el modelo tag llamado getTaggable que llama, a la correcta composición de los taggables.

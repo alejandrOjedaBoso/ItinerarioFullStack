@@ -7,10 +7,11 @@ import { sequelize } from "./database/database.js";
 
 async function main() {
   try {
-    // Force true para que se apliquen los cambios en las tablas
-    await sequelize.sync({ force: false });
+    // Force true para que se apliquen los cambios en las tablas borra los datos
+    // alter modifica las tablas en basa en los modelos peor no borra ningún dato
+    await sequelize.sync({ force: false, alter: true });
 
-    console.log("Connection has beem established");
+    console.log("Connection has been established");
 
     app.listen(3000, () => {
       console.log("Server is running on port 3000");

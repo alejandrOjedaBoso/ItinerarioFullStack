@@ -1,0 +1,9 @@
+Comandos basicos.
+------------------------------------------------
+
+docker run <nombre de la imagen>	#Ejecuta un contenedor, si no tiene la imagen la descarga
+docker help	#abre la ayuda de comandos de docker
+docker help | more	#Lista avanzada de docker
+docker container/image ls	#Lista los contenedores o imagenes
+docker container/image rm	#Elimina un contenedor o una imagen
+docker container/image --help	#Muestra la ayuda para los contenedores o imagenes

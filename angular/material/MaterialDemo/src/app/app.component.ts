@@ -125,6 +125,4 @@ export class AppComponent implements OnInit, AfterViewInit {
     filterValue=filterValue.value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-
 }
