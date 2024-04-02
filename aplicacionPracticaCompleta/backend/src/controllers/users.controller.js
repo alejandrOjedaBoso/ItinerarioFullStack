@@ -32,7 +32,7 @@ export async function loginUser(req, res) {
       const token = generateToken(user);
       res.status(200).json({ token: token });
     } else {
-      res.status(200).json({ isLoged });
+      res.status(401).json({ isLoged });
     }
   } catch (err) {
     res.status(500).json({ err: err });
@@ -41,11 +41,12 @@ export async function loginUser(req, res) {
 
 export async function checkTokenUser(req, res) {
   try {
-    const token = req.cookies.get("token");
+    let token = req.headers.authorization;
+    token = token.split(" ")[1];
     if (checkToken(token)) {
-      res.status(200).json(token);
+      res.status(200).json(true);
     } else {
-      res.status(403).json(false);
+      res.status(200).json(false);
     }
   } catch (err) {
     res.status(500).json({ err: err });

@@ -19,7 +19,7 @@ export function generateToken(user) {
 
   //Genera y firma el token con la clave secreta
   try {
-    const token = jwt.sign(payload, secret, { expiresIn: "1m" });
+    const token = jwt.sign(payload, secret, { expiresIn: "1h" });
     return token;
   } catch (err) {
     console.log(err);
@@ -30,7 +30,7 @@ export function generateToken(user) {
 export function checkToken(token) {
   try {
     const decoded = jwt.verify(token, secret);
-    if (decoded && jwt.exp && Date.now() / 1000 < decoded.exp) {
+    if (decoded && decoded.exp && Date.now() / 1000 < decoded.exp) {
       return true;
     } else {
       return false;

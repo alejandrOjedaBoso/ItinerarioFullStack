@@ -156,7 +156,7 @@ Models relations include everything
 Example:
 User.find({include:{all: true}})
 
-User.find({include:{all: true, nested:ture}})
+User.find({include:{all: true, nested:true}})
 
 
 Models relations order
