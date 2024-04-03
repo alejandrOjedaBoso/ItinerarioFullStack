@@ -4,6 +4,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import {FormsModule} from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { TabMenuModule } from 'primeng/tabmenu';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 
 
 const material = [
@@ -11,7 +13,9 @@ const material = [
   InputTextModule,
   FormsModule,
   PasswordModule,
-  TabMenuModule
+  TabMenuModule,
+  TableModule,
+  DialogModule,
 ];
 
 @NgModule({

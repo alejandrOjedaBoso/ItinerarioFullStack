@@ -1,7 +1,7 @@
 <p-tabMenu [model]="sections" [activeItem]="activeItem"></p-tabMenu>
 <div *ngIf="activeItem.label==='Maquinas'">
-    <h1>Maquinas</h1>
+    <app-maquinas></app-maquinas>
 </div>
 <div *ngIf="activeItem.label==='Sensores'">
-    <h1>Sensores</h1>
+    <app-sensores></app-sensores>
 </div>

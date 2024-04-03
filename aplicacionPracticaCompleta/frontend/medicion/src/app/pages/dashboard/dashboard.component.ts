@@ -11,7 +11,7 @@ import { MenuItem } from 'primeng/api/menuitem.js';
 })
 export class DashboardComponent implements OnInit  {
   sections: MenuItem[] | undefined;
-  activeItem: MenuItem | undefined = {label: 'maquinas'};
+  activeItem: any = {label: 'maquinas'};
 
   constructor(private loginService: LoginService, private router: Router){
 

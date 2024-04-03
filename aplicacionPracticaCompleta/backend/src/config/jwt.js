@@ -13,6 +13,7 @@ export const checkCredentials = expressjwt({
 
 //generacion token
 export function generateToken(user) {
+  delete user.password;
   const payload = {
     username: user,
   };
@@ -35,6 +36,15 @@ export function checkToken(token) {
     } else {
       return false;
     }
+  } catch (e) {
+    return false;
+  }
+}
+
+export function getUser(token) {
+  try {
+    const decoded = jwt.verify(token, secret);
+    return decoded.username;
   } catch (e) {
     return false;
   }

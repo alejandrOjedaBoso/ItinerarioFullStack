@@ -43,7 +43,7 @@ export const Machine = sequelize.define(
     status: {
       type: DataTypes.STRING,
       validate: {
-        isIn: ["stopped", "working", "paused"],
+        isIn: [["stopped", "working", "paused"]],
       },
       allowNull: false,
     },

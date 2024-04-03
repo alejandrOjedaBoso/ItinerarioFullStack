@@ -1,0 +1,123 @@
+<p-table [value]="maquinas" dataKey="ref">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Derigistered</th>
+            <th>Heads</th>
+            <th>Status</th>
+            <th>Power KV</th>
+            <th>Email alerts</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-maquina let-editing="editing">
+        <tr>
+            <td [pEditableColumn]="maquina.name" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.name" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.name }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.brand" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.brand" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.brand }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.model" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.model" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.model }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.startDate" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.startDate" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.startDate }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.endDate" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.endDate" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.endDate }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.derigistered" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.derigistered" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.derigistered }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.heads" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.heads" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.heads }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.status" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.status" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.status }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.powerKv" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.powerKv" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.powerKv }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="maquina.emailAlerts" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="maquina.emailAlerts" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.emailAlerts }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td><p-button class="updateButton" severity="success" (onClick)="updateMachine(maquina)"><i class="fa-regular fa-floppy-disk"></i></p-button></td>
+            <td><p-button class="updateButton" severity="danger" (onClick)="deleteMachine(maquina)"><i class="fa-solid fa-trash"></i></p-button></td>
+        </tr>
+    </ng-template>
+</p-table>
+<app-error></app-error>
