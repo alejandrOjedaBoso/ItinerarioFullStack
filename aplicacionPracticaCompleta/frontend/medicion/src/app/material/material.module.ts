@@ -6,6 +6,7 @@ import { PasswordModule } from 'primeng/password';
 import { TabMenuModule } from 'primeng/tabmenu';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
 
 
 const material = [
@@ -16,6 +17,7 @@ const material = [
   TabMenuModule,
   TableModule,
   DialogModule,
+  ToastModule,
 ];
 
 @NgModule({

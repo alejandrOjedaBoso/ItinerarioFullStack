@@ -48,7 +48,7 @@
             <td [pEditableColumn]="maquina.startDate" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="maquina.startDate" />
+                        <input pInputText type="datetime-local" [(ngModel)]="maquina.startDate" />
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ maquina.startDate }}
@@ -65,20 +65,13 @@
                     </ng-template>
                 </p-cellEditor>
             </td>
-            <td [pEditableColumn]="maquina.derigistered" pEditableColumnField="code">
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="maquina.derigistered" />
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{ maquina.derigistered }}
-                    </ng-template>
-                </p-cellEditor>
+            <td>
+                <input type="checkbox" [(ngModel)]="maquina.derigistered" />    
             </td>
             <td [pEditableColumn]="maquina.heads" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="maquina.heads" />
+                        <input pInputText type="number" [(ngModel)]="maquina.heads" />
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ maquina.heads }}
@@ -98,26 +91,27 @@
             <td [pEditableColumn]="maquina.powerKv" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="maquina.powerKv" />
+                        <input pInputText type="number" [(ngModel)]="maquina.powerKv" step="0.1"/>
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ maquina.powerKv }}
                     </ng-template>
                 </p-cellEditor>
             </td>
-            <td [pEditableColumn]="maquina.emailAlerts" pEditableColumnField="code">
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="maquina.emailAlerts" />
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{ maquina.emailAlerts }}
-                    </ng-template>
-                </p-cellEditor>
+            <td>
+                <input type="checkbox" [(ngModel)]="maquina.emailAlerts" />
             </td>
             <td><p-button class="updateButton" severity="success" (onClick)="updateMachine(maquina)"><i class="fa-regular fa-floppy-disk"></i></p-button></td>
-            <td><p-button class="updateButton" severity="danger" (onClick)="deleteMachine(maquina)"><i class="fa-solid fa-trash"></i></p-button></td>
+            <td><p-button class="updateButton" severity="danger" (onClick)="showDeleteDialog(maquina)"><i class="fa-solid fa-trash"></i></p-button></td>
         </tr>
     </ng-template>
 </p-table>
-<app-error></app-error>
+
+<p-dialog header="¿Quieres eliminar el elemento?" [(visible)]="borrarVisible" [style]="{width: '50vw'}">
+    <div id="deleteDialogButtons" >
+        <p-button label="Si" (onClick)="deleteMachine()" (click)="borrarVisible = false"></p-button>
+        <p-button label="No" (click)="borrarVisible = false"></p-button>
+    </div>
+</p-dialog>
+
+<p-toast></p-toast>

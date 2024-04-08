@@ -51,7 +51,7 @@ export async function updateMachine(req, res) {
         ref: req.params.id,
       },
     });
-    machine.update(req.body);
+    await machine.update(req.body);
     res.status(200).json(machine);
   } catch (err) {
     res.status(500).json({ err: err });

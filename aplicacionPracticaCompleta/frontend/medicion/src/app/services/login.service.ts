@@ -2,12 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import {Token,SesionActica} from "../interfaces/token.interface.js";
+import {BACKEND} from "../config/Config.js";
 
 @Injectable({
     providedIn: 'root'
   })
 export class LoginService {
-    private path: string ="http://localhost:3000/api/users/authenticate";
+    private path: string =BACKEND+"/api/users/authenticate";
 
     constructor(private http: HttpClient) { }
 

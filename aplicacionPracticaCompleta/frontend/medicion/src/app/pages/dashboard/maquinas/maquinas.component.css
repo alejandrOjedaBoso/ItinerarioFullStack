@@ -5,3 +5,9 @@ p-table {
 .updateButton{
     background-color: mediumspringgreen;
 }
+
+#deleteDialogButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

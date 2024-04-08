@@ -2,12 +2,14 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import {Machine} from "../interfaces/machine.interface.js";
+import {BACKEND} from "../../../../config/Config.js";
+
 
 @Injectable({
     providedIn: 'root'
   })
 export class MachineService {
-    private path: string ="http://localhost:3000/machines";
+    private path: string = BACKEND+"/machines";
 
     constructor(private http: HttpClient) { }
 

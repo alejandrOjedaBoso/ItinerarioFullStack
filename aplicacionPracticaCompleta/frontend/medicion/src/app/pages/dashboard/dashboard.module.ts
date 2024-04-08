@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard.component';
 import { MaterialModule } from '../../material/material.module';
 import { MaquinasComponent } from './maquinas/maquinas.component';
 import { SensoresComponent } from './sensores/sensores.component';
-import { ErrorComponent } from './maquinas/error/error.component';
+
 
 
 @NgModule({
@@ -14,7 +14,6 @@ import { ErrorComponent } from './maquinas/error/error.component';
     DashboardComponent,
     MaquinasComponent,
     SensoresComponent,
-    ErrorComponent
   ],
   imports: [
     CommonModule,
