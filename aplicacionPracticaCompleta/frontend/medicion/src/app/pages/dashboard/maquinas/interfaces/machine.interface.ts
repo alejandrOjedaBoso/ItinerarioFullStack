@@ -1,3 +1,4 @@
+import {User} from '../../../../interfaces/user.interface.js';
 export interface Machine{
     ref:string
     name:string,
@@ -10,5 +11,5 @@ export interface Machine{
     status:string,
     powerKv:number,
     emailAlerts:boolean,
-    userId:string,
+    user:User
 }

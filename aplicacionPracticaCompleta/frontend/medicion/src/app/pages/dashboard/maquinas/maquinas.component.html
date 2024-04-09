@@ -11,6 +11,7 @@
             <th>Status</th>
             <th>Power KV</th>
             <th>Email alerts</th>
+            <th>Sensors</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-maquina let-editing="editing">
@@ -101,8 +102,21 @@
             <td>
                 <input type="checkbox" [(ngModel)]="maquina.emailAlerts" />
             </td>
-            <td><p-button class="updateButton" severity="success" (onClick)="updateMachine(maquina)"><i class="fa-regular fa-floppy-disk"></i></p-button></td>
-            <td><p-button class="updateButton" severity="danger" (onClick)="showDeleteDialog(maquina)"><i class="fa-solid fa-trash"></i></p-button></td>
+            <td [pEditableColumn]="maquina.powerKv" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="number" [(ngModel)]="maquina.powerKv" step="0.1"/>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ maquina.powerKv }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td class="controlButtons"> 
+                <p-button class="updateButton" severity="success" (onClick)="updateMachine(maquina)"><i class="fa-regular fa-floppy-disk"></i></p-button>
+                <p-button class="updateButton" severity="danger" (onClick)="showDeleteDialog(maquina)"><i class="fa-solid fa-trash"></i></p-button>
+            </td>
+            
         </tr>
     </ng-template>
 </p-table>

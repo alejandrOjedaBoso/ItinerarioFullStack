@@ -1,6 +1,5 @@
 import { Machine } from "../models/Machine.js";
 import { getUser } from "../config/jwt.js";
-import { where } from "sequelize";
 
 export async function createMachine(req, res) {
   const machine = req.body;

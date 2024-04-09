@@ -2,7 +2,6 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
 
 import { Sensor } from "./Sensor.js";
-import { MachinesSensors } from "./MachinesSensors.js";
 
 export const Machine = sequelize.define(
   "machines",
@@ -63,5 +62,12 @@ export const Machine = sequelize.define(
 );
 
 //Relaciones
-Machine.belongsToMany(Sensor, { through: MachinesSensors });
-Sensor.belongsToMany(Machine, { through: MachinesSensors });
+Machine.hasMany(Sensor, {
+  foreignKey: "machineId",
+  sourceKey: "ref",
+});
+
+Sensor.belongsTo(Machine, {
+  foreignKey: "machineId",
+  targetKey: "ref",
+});
