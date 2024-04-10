@@ -16,7 +16,7 @@ export async function createUser(req, res) {
     });
     res.status(200).json(newUser);
   } catch (err) {
-    res.status(500).json({ err: err });
+    res.status(500).json({ err: err.message });
   }
 }
 
@@ -35,7 +35,7 @@ export async function loginUser(req, res) {
       res.status(401).json({ isLoged });
     }
   } catch (err) {
-    res.status(500).json({ err: err });
+    res.status(500).json({ err: err.message });
   }
 }
 
@@ -49,6 +49,6 @@ export async function checkTokenUser(req, res) {
       res.status(200).json(false);
     }
   } catch (err) {
-    res.status(500).json({ err: err });
+    res.status(500).json({ err: err.message });
   }
 }

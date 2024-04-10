@@ -1,0 +1,15 @@
+p-table {
+    min-width: 50rem;
+}
+
+#deleteDialogButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.controlButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

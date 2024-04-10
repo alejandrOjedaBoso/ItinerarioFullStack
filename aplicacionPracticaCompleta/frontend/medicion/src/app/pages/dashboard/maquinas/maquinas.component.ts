@@ -18,6 +18,10 @@ export class MaquinasComponent implements OnInit{
   constructor(private machineService: MachineService, private messageService:MessageService) { }
 
   ngOnInit() {
+    this.loadMachines();
+  }
+
+  loadMachines(){
     this.machineService.getMachinesByToken().subscribe(
       (response) => {
         this.maquinas = response;
@@ -27,7 +31,6 @@ export class MaquinasComponent implements OnInit{
       }
     );
   }
-
   showDeleteDialog(maquina:Machine):void{
     this.maquinaActual=maquina;
     this.borrarVisible=true;
@@ -44,7 +47,7 @@ export class MaquinasComponent implements OnInit{
         });
       },
       error =>{
-        this.messageService.add({severity:'error',summary:'Error',detail:'Error deleting'});
+        this.messageService.add({severity:'error',summary:'Error',detail:error.message});
       }
     );
 
@@ -53,11 +56,11 @@ export class MaquinasComponent implements OnInit{
   updateMachine(maquina:Machine){
     this.machineService.updateMachine(maquina).subscribe(
       (response) => {
+        this.loadMachines();
         this.messageService.add({severity:'success',summary:'Success',detail:'Updated successfully'});
       },
       error =>{
-        this.messageService.add({severity:'error',summary:'Error',detail:'Error updating'});
-        console.log(error);
+        this.messageService.add({severity:'error',summary:'Error',detail:error.message});
       }
     );
   }

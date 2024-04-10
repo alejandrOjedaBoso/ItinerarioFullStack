@@ -8,7 +8,7 @@ export async function createMachine(req, res) {
     const newMachine = Machine.create(machine);
     res.status(200).json(machine);
   } catch (err) {
-    res.status(500).json({ err: err });
+    res.status(500).json({ err: err.message });
   }
 }
 
@@ -24,7 +24,7 @@ export async function getMachinesByUserToken(req, res) {
     });
     res.status(200).json(machines);
   } catch (err) {
-    res.status(500).json({ err: err });
+    res.status(500).json({ err: err.message });
   }
 }
 
@@ -39,7 +39,7 @@ export async function deleteMachine(req, res) {
     await machine.destroy();
     res.status(200).json({});
   } catch (err) {
-    res.status(500).json({ err: err });
+    res.status(500).json({ err: err.message });
   }
 }
 
@@ -53,6 +53,6 @@ export async function updateMachine(req, res) {
     await machine.update(req.body);
     res.status(200).json(machine);
   } catch (err) {
-    res.status(500).json({ err: err });
+    res.status(500).json({ err: err.message });
   }
 }

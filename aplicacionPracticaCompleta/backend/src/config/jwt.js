@@ -13,7 +13,7 @@ export const checkCredentials = expressjwt({
 
 //generacion token
 export function generateToken(user) {
-  delete user.password;
+  delete user.dataValues.password;
   const payload = {
     username: user,
   };

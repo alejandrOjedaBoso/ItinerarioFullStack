@@ -1,1 +1,124 @@
-<p>sensores works!</p>
+<p-table [value]="sensores" dataKey="code">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Model</th>
+            <th>Type</th>
+            <th>Start date</th>
+            <th>End date</th>
+            <th>Derigistered</th>
+            <th>Maquina</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-sensor let-editing="editing">
+        <tr>
+            <td [pEditableColumn]="sensor.name" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="sensor.name" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ sensor.name }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="sensor.model" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="sensor.model" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ sensor.model }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="sensor.type" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input pInputText type="text" [(ngModel)]="sensor.type" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ sensor.type }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="sensor.startDate" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-calendar [touchUI]="true" [readonlyInput]="true" [(ngModel)]="sensor.startDate"></p-calendar>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ sensor.startDate }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td [pEditableColumn]="sensor.endDate" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-calendar [touchUI]="true" [readonlyInput]="true" [(ngModel)]="sensor.endDate"></p-calendar>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ sensor.endDate }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <input type="checkbox" [(ngModel)]="sensor.deregistered" />    
+            </td>
+            <td *ngIf="sensor.machine!=null; else nullMachine" [pEditableColumn]="sensor.machine.name" pEditableColumnField="code">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <!--Drop down maquinas-->
+                        <!-- ngmodel: es donde guarda lo sleccionado 
+                            optionValue: eliges la propiedad del objeto que se quiere guardar 
+                            filteredBy:Campo por el cual quieres buscar 
+                            value: el valor actual del objeto-->
+                        <p-dropdown [options]="maquinas" (onClick)="loadMachines()" [(ngModel)]="sensor.machineId" optionLabel="ref" optionValue="ref" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecciona una maquina" value="sensor.machine.name">
+                            <ng-template pTemplate="selectedItem" let-selectedOption>
+                                <div class="flex align-items-center gap-2">
+                                    <!--Muestra el campo de la propiedad seleccionada-->
+                                    <div>{{ selectedOption.name }}</div>
+                                </div>
+                            </ng-template>
+                            <ng-template let-machine pTemplate="item">
+                                <div class="flex align-items-center gap-2">
+                                    <!--Es la lista que sale cuando muestras la propiedad-->
+                                    <div>{{ machine.name }}</div>
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ sensor.machine.name }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <ng-template #nullMachine>
+                <td [pEditableColumn]="sensor.machineId" pEditableColumnField="code">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="sensor.machineId" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{ "Null" }}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                </ng-template>
+            <td class="controlButtons"> 
+                <p-button class="updateButton" severity="success" (onClick)="updateSensor(sensor)"><i class="fa-regular fa-floppy-disk"></i></p-button>
+                <p-button class="updateButton" severity="danger" (onClick)="showDeleteDialog(sensor)"><i class="fa-solid fa-trash"></i></p-button>
+            </td>
+            
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-dialog header="¿Quieres eliminar el elemento?" [(visible)]="borrarVisible" [style]="{width: '50vw'}">
+    <div id="deleteDialogButtons" >
+        <p-button label="Si" (onClick)="deleteSensor()" (click)="borrarVisible = false"></p-button>
+        <p-button label="No" (click)="borrarVisible = false"></p-button>
+    </div>
+</p-dialog>
+
+<p-toast></p-toast>

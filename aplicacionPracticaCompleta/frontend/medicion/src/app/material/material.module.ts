@@ -7,6 +7,8 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 const material = [
@@ -18,6 +20,8 @@ const material = [
   TableModule,
   DialogModule,
   ToastModule,
+  CalendarModule,
+  DropdownModule
 ];
 
 @NgModule({

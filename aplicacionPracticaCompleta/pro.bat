@@ -1,5 +1,5 @@
 @echo off
 cd .\backend\src
-start nodemon index.js
+start npm run dev
 cd ..\..\frontend\medicion
 start ng serve

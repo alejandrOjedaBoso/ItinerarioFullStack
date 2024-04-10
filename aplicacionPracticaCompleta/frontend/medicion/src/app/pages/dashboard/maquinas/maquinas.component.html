@@ -49,7 +49,7 @@
             <td [pEditableColumn]="maquina.startDate" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="datetime-local" [(ngModel)]="maquina.startDate" />
+                        <p-calendar [touchUI]="true" [readonlyInput]="true" [(ngModel)]="maquina.startDate"></p-calendar>
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ maquina.startDate }}
@@ -59,7 +59,7 @@
             <td [pEditableColumn]="maquina.endDate" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="maquina.endDate" />
+                        <p-calendar [touchUI]="true" [readonlyInput]="true" [(ngModel)]="maquina.endDate"></p-calendar>
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ maquina.endDate }}
