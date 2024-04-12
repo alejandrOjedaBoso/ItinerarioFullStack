@@ -29,6 +29,11 @@ export class MaquinasComponent implements OnInit{
     this.machineService.getMachinesByToken().subscribe(
       (response) => {
         this.maquinas = response;
+        
+        //Traer sensores de las maquinas
+        this.maquinas.forEach(machine =>{
+          this.traerSensores(machine);
+        });
       },
       error =>{
         console.error(error);
@@ -81,6 +86,7 @@ export class MaquinasComponent implements OnInit{
   }
 
   sensorsMachineId(maquina:Machine):void{
+    console.log("chip")
     if(!maquina.sensores){
       maquina.sensores = []
     }

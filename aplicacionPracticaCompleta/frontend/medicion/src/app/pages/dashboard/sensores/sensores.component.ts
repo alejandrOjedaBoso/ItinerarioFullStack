@@ -29,6 +29,7 @@ export class SensoresComponent implements OnInit {
   cargarSensores(){
     this.sensorService.getSensorUserUnansigned().subscribe((response)=>{
       this.sensores=response;
+      this.loadMachines();
     },
   error=>{
     console.log(error);
