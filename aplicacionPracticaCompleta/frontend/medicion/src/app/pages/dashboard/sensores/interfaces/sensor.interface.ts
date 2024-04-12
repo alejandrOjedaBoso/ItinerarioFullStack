@@ -7,5 +7,6 @@ export interface Sensor{
     startDate:Date,
     endDate:Date,
     degistered:boolean,
-    machineId: string;
+    machineId?: string|null;
+    machine: Machine | undefined;
 }

@@ -1,4 +1,4 @@
-<p-table [value]="sensores" dataKey="code">
+<p-table [value]="sensores" dataKey="code" >
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
@@ -73,7 +73,7 @@
                             optionValue: eliges la propiedad del objeto que se quiere guardar 
                             filteredBy:Campo por el cual quieres buscar 
                             value: el valor actual del objeto-->
-                        <p-dropdown [options]="maquinas" (onClick)="loadMachines()" [(ngModel)]="sensor.machineId" optionLabel="ref" optionValue="ref" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecciona una maquina" value="sensor.machine.name">
+                        <p-dropdown [options]="maquinas" (onClick)="loadMachines()" appendTo="body" [(ngModel)]="sensor.machineId" optionLabel="ref" optionValue="ref" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecciona una maquina" value="sensor.machine.name">
                             <ng-template pTemplate="selectedItem" let-selectedOption>
                                 <div class="flex align-items-center gap-2">
                                     <!--Muestra el campo de la propiedad seleccionada-->
@@ -82,7 +82,7 @@
                             </ng-template>
                             <ng-template let-machine pTemplate="item">
                                 <div class="flex align-items-center gap-2">
-                                    <!--Es la lista que sale cuando muestras la propiedad-->
+                                    <!--Es la lista que sale cuando espandes las opciones-->
                                     <div>{{ machine.name }}</div>
                                 </div>
                             </ng-template>
@@ -97,10 +97,22 @@
                 <td [pEditableColumn]="sensor.machineId" pEditableColumnField="code">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="sensor.machineId" />
+                            <p-dropdown [options]="maquinas" (onClick)="loadMachines()" appendTo="body" [(ngModel)]="sensor.machineId" optionLabel="ref" optionValue="ref" [filter]="true" filterBy="name" [showClear]="true" placeholder="Selecciona una maquina" value="sensor.machine.name">
+                                <ng-template pTemplate="selectedItem" let-selectedOption>
+                                    <div class="flex align-items-center gap-2">
+                                        <!--Muestra el campo de la propiedad seleccionada-->
+                                        <div>{{ selectedOption.name }}</div>
+                                    </div>
+                                </ng-template>
+                                <ng-template let-machine pTemplate="item">
+                                    <div class="flex align-items-center gap-2">
+                                        <div>{{ machine.name }}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
                         </ng-template>
                         <ng-template pTemplate="output">
-                            {{ "Null" }}
+                            {{ sensor.machineId===null?"None":sensor.machineId}}
                         </ng-template>
                     </p-cellEditor>
                 </td>

@@ -1,7 +1,9 @@
 import { Component, OnInit, Output } from '@angular/core';
 import {MachineService} from './services/machine.service.js';
+import { SensorService } from '../sensores/service/sensor.service.js';
 import {Machine} from './interfaces/machine.interface';
 import { MessageService } from 'primeng/api';
+import { Sensor } from '../sensores/interfaces/sensor.interface.js';
 
 @Component({
   selector: 'app-maquinas',
@@ -12,10 +14,12 @@ import { MessageService } from 'primeng/api';
 export class MaquinasComponent implements OnInit{
   maquinas: Machine[] = [];
   borrarVisible:boolean=false;
+  //Maquina a borrar
   maquinaActual:Machine=this.maquinas[0];
 
 
-  constructor(private machineService: MachineService, private messageService:MessageService) { }
+
+  constructor(private machineService: MachineService, private messageService:MessageService, private sensorService:SensorService) { }
 
   ngOnInit() {
     this.loadMachines();
@@ -63,5 +67,40 @@ export class MaquinasComponent implements OnInit{
         this.messageService.add({severity:'error',summary:'Error',detail:error.message});
       }
     );
+  }
+
+  traerSensores(maquina:Machine):void{
+      this.sensorService.getSensorByMachineUnasigned(maquina.ref).subscribe(
+        (response) => {
+          maquina.sensores = [...response];
+        },
+        error =>{
+          console.error(error);
+        }
+      );
+  }
+
+  sensorsMachineId(maquina:Machine):void{
+    if(!maquina.sensores){
+      maquina.sensores = []
+    }
+
+    for(let i=0; i<maquina.sensores.length; i++){
+      const sensor = maquina.sensores[i];
+
+      const isSensor= maquina.sensors.find((sensorVolatil, index)=>{
+        if(sensor.code === sensorVolatil.code){
+          return true;
+        }else{
+          return false
+        }
+      })
+      
+      if (isSensor){
+        sensor.machineId =maquina.ref;
+      }else{
+        sensor.machineId = null;
+      }
+    }
   }
 }

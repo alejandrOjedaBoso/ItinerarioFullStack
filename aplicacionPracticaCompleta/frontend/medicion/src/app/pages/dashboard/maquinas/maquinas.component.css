@@ -18,3 +18,7 @@ p-table {
 .custom-p-table{
     height: 500px !important;
 }
+
+li{
+    list-style: none;
+}

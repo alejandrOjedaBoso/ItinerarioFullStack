@@ -1,4 +1,5 @@
 import { Machine } from "../models/Machine.js";
+import { Sensor } from "../models/Sensor.js";
 import { getUser } from "../config/jwt.js";
 
 export async function createMachine(req, res) {
@@ -20,6 +21,9 @@ export async function getMachinesByUserToken(req, res) {
     const machines = await Machine.findAll({
       where: {
         userId: user.username,
+      },
+      include: {
+        model: Sensor,
       },
     });
     res.status(200).json(machines);
@@ -45,11 +49,24 @@ export async function deleteMachine(req, res) {
 
 export async function updateMachine(req, res) {
   try {
+    //Modifica los sensores
+    if (req.body.sensores) {
+      const sensors = req.body.sensores;
+      sensors.forEach(async (element) => {
+        const sensor = await Sensor.findOne({ where: { code: element.code } });
+        sensor.machineId = element.machineId;
+        if (sensor) {
+          sensor.save();
+        }
+      });
+    }
+    //Modifica la maquina
     const machine = await Machine.findOne({
       where: {
         ref: req.params.id,
       },
     });
+
     await machine.update(req.body);
     res.status(200).json(machine);
   } catch (err) {

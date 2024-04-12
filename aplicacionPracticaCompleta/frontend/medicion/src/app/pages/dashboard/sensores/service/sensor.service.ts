@@ -44,4 +44,15 @@ export class SensorService {
         }
         return this.http.delete<any>(this.path+"/"+sensor.code,httpOptions);
     }
+
+    getSensorByMachineUnasigned(machineRef:string):Observable<Sensor[]>{
+        const token = localStorage.getItem('token');
+        const httpOptions ={
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        }
+        return this.http.get<Sensor[]>(this.path+"/sensor/machine/"+machineRef,httpOptions);
+    }
 }

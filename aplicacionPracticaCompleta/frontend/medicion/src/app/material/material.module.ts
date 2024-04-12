@@ -9,6 +9,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 
 const material = [
@@ -21,7 +22,8 @@ const material = [
   DialogModule,
   ToastModule,
   CalendarModule,
-  DropdownModule
+  DropdownModule,
+  MultiSelectModule
 ];
 
 @NgModule({

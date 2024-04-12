@@ -72,11 +72,14 @@ export class SensoresComponent implements OnInit {
   }
 
   async loadMachines(){
-    await this.machineService.getMachinesByToken().subscribe(
-      (response)=>{
-        this.maquinas = response;
-      },
-      error => {console.log(error.message);}
-    );
+    if(!this.maquinas){
+      await this.machineService.getMachinesByToken().subscribe(
+        (response)=>{
+          this.maquinas = response;
+        },
+        error => {console.log(error.message);}
+      );
+    }
   }
+
 }

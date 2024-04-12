@@ -69,3 +69,24 @@ export async function deleteSensor(req, res) {
     res.status(500).json({ err: er.message });
   }
 }
+
+export async function getSensorByMachineUnasigned(req, res) {
+  try {
+    const machineRef = req.params.id;
+    const sensors = [
+      ...(await Sensor.findAll({
+        where: {
+          machineId: machineRef,
+        },
+      })),
+      ...(await Sensor.findAll({
+        where: {
+          machineId: null,
+        },
+      })),
+    ];
+    res.status(200).json(sensors);
+  } catch (er) {
+    res.status(500).json({ err: er.message });
+  }
+}

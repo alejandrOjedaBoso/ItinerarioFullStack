@@ -105,10 +105,16 @@
             <td [pEditableColumn]="maquina.powerKv" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="number" [(ngModel)]="maquina.powerKv" step="0.1"/>
+                            <p-multiSelect (onClick)="traerSensores(maquina)" (onChange)="sensorsMachineId(maquina)" [options]="maquina.sensores" [(ngModel)]="maquina.sensors" optionLabel="name" [filter]="true" filterBy="name" display="chip" [showClear]="true" placeholder="Selecciona uno o varios sensores" appendTo="body">
+                            </p-multiSelect>                          
                     </ng-template>
                     <ng-template pTemplate="output">
-                        {{ maquina.powerKv }}
+                        <div *ngIf="maquina.sensors && maquina.sensors.length > 0">
+                              <span *ngFor="let sensor of maquina.sensors">{{ sensor.name+" " }}</span>
+                          </div>
+                          <div *ngIf="!maquina.sensors || maquina.sensors.length === 0">
+                            None
+                          </div>
                     </ng-template>
                 </p-cellEditor>
             </td>
