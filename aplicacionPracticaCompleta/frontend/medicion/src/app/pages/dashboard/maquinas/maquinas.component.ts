@@ -3,7 +3,7 @@ import {MachineService} from './services/machine.service.js';
 import { SensorService } from '../sensores/service/sensor.service.js';
 import {Machine} from './interfaces/machine.interface';
 import { MessageService } from 'primeng/api';
-import { Sensor } from '../sensores/interfaces/sensor.interface.js';
+
 
 @Component({
   selector: 'app-maquinas',
@@ -13,6 +13,7 @@ import { Sensor } from '../sensores/interfaces/sensor.interface.js';
 })
 export class MaquinasComponent implements OnInit{
   maquinas: Machine[] = [];
+  status:string[] = ["working","stopped","paused","maintenance"]
   borrarVisible:boolean=false;
   //Maquina a borrar
   maquinaActual:Machine=this.maquinas[0];

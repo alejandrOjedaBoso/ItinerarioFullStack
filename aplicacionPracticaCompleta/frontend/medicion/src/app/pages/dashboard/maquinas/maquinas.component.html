@@ -82,7 +82,7 @@
             <td [pEditableColumn]="maquina.status" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="maquina.status" />
+                        <p-dropdown [options]="status" [(ngModel)]="maquina.status" placeholder="Selecciona el estado" appendTo="body" [required]="true"></p-dropdown>
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ maquina.status }}

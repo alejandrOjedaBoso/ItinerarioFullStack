@@ -15,7 +15,7 @@
             <td [pEditableColumn]="sensor.name" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="sensor.name" />
+                        <input pInputText type="text" [(ngModel)]="sensor.name" name="nombre" #nombreField="ngModel" [ngClass]="{ 'invalid-field': nombreField.invalid && (nombreField.dirty || nombreField.touched) }"/>
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ sensor.name }}

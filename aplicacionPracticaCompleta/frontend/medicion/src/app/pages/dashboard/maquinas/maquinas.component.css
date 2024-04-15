@@ -1,7 +1,3 @@
-p-table {
-    min-width: 50rem;
-}
-
 #deleteDialogButtons{
     display: flex;
     flex-direction: row;
@@ -22,3 +18,4 @@ p-table {
 li{
     list-style: none;
 }
+
