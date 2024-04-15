@@ -86,7 +86,7 @@ export class MaquinasComponent implements OnInit{
   }
 
   sensorsMachineId(maquina:Machine):void{
-    console.log("chip")
+    //Manera suboptima
     if(!maquina.sensores){
       maquina.sensores = []
     }
