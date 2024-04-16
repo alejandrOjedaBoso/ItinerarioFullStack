@@ -13,7 +13,8 @@ import { MessageService } from 'primeng/api';
 })
 export class MaquinasComponent implements OnInit{
   maquinas: Machine[] = [];
-  status:string[] = ["working","stopped","paused","maintenance"]
+  status:string[] = ["working","stopped","paused","maintenance"];
+  heads:number[] = [1,2,3,4,5];
   borrarVisible:boolean=false;
   //Maquina a borrar
   maquinaActual:Machine=this.maquinas[0];

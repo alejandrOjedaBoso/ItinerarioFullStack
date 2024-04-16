@@ -17,6 +17,7 @@ export class SensoresComponent implements OnInit {
   borrarVisible:boolean=false;
   sensorActual:Sensor=this.sensores[0];
   maquinas:Machine[]|undefined;
+  types:string[] = ["temperature","pressure","moisture"];
 
   constructor(private sensorService:SensorService, private messageService:MessageService, private machineService:MachineService){
 

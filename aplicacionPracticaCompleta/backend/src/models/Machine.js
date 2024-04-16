@@ -36,7 +36,7 @@ export const Machine = sequelize.define(
       allowNull: false,
       validate: {
         min: 1,
-        max: 2,
+        max: 5,
       },
     },
     status: {

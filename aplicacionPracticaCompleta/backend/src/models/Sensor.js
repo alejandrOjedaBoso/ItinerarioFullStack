@@ -20,7 +20,7 @@ export const Sensor = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        isIn: ["temperature", "pressure", "moisture"],
+        isIn: [["temperature", "pressure", "moisture"]],
       },
     },
     startDate: {

@@ -35,7 +35,7 @@
             <td [pEditableColumn]="sensor.type" pEditableColumnField="code">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="sensor.type" />
+                        <p-dropdown [options]="types" [(ngModel)]="sensor.type" placeholder="Selecciona el tipo" appendTo="body" [required]="true"></p-dropdown>
                     </ng-template>
                     <ng-template pTemplate="output">
                         {{ sensor.type }}
